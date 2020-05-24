@@ -1,0 +1,37 @@
+
+Task0:
+    Regardless of the size of the input and in every case (best, worst and average), my solution directly accesses the a list element 7 time through indecies (the first element in the texts list 3 times, and the last element of the calls list 4 times), and formats two strings and prints them, so it has a does a constant number of operations regardless of the input
+    
+    So its worst case time complexity is on the order of: O(1)
+
+Task1:
+    In every case I iterate over every element in the texts list and add it to a set (which in the worst case collides with all the previouse hashes -almost imposible in practice-)  (2 (n(n-1))/2 operations which gives up (n(n-1)) => (n^2-n)), then I iterate over every element in the calls list and perform two add operations to the set of phone numbers again ((n^2-n)), so now we have 4n and then we format a string, and print it (assume 2 operations), so we end up with a time complexity of (2n^2 - 2n + 2)
+    
+    So its worst case time complexity is on the order of: O(n^2)
+
+Taks2:
+    in the worst case, we iterate over every element in the calls list (n times) and for each element we search the entire dectionary without finding it (although again it's extremely unlikely that all the dictionary hashes are the same in practice) which gives us (n * ((n-1) / 2)) which is (n(n-1))/2, (for each iteration (i) of calls, we have i iterations in the phoneTime dict search)
+    
+    then we assign the first calling number in call the the longest time calling (1 operation), then we iterate over all the keys in phoneTime, and for each we check if the time of the next number is talked more, if so we assign it as the longest (2 operations) per iteration (n iterations) so we end up with (2n+1). adding it all togethter we get: (((n^2)/2 + 3n/2 + 1)   
+    
+    So its worst case time complexity is on the order of: O(n^2)
+
+Taks3:
+    create a set and a dict (O(1) complexity for that part),
+    
+    then loop through all calls, and check if each starts with a certain string '(080)' (n timen) and for each check the second number starts with '(080)' add perform an addition (2 operations), then we get the code from the second the number being called (which in the worst case is 14: fail the first 2 conditions in getCode conditions and we have to parse the whole number to find the parenthese ')' then return the slice, assume 1 operation) then we add it to the codes set wich as we saw from previouse tasks gives for the loop ( n * 2 * 14 * (n-1)/2) so this part is on the Order of O(n^2)
+
+    then we print a line (1 operation) build a codes list from codes set (n operations), and sort the list using TimSort (has a complexity of O(nlogn)) and loop through it and print them all (n operations) then we calculate the percentage of calls and format and print a string which has a constant time, so the complixity of this part ends up being O(nlogn)
+    
+    So its worst case time complexity is on the order of: O(n^2)
+
+Taks4:
+    init 2 sets (2 operations), then loop the all texts (n iterations) and for each add 2 elements to the non telemarketers set ( as we saw in task 1 we end up with time complexity of (n^2-n) ) so the time complexity for this section is of the Order O(n^2)
+    
+    then for the calls list we iterate and add 1 element to the set during each iteration in the worst case taking (n^2) operations so the time complexity for this section is of the Order O(n^2)
+    
+    then we loop the calls again checking in each iteration if an element is in the non telemarketers set wich in the worst case will take n operations so we end up with (n^2) operations then for each one we would add the number to the possible telemarketers set and we would get (n^2)(n-1)/2 => (n^3 - n^2)/2 so the time complexity for this section is of the Order O(n^3)
+
+    then convert possible telemarketers to a set (n) and sort it using Timsort (nlogn) then print a string (1 operation) and loop throush the list and print it (n operations) so the time complexity for this section is of the Order O(nlogn)
+
+    So its worst case time complexity is on the order of: O(n^3)
